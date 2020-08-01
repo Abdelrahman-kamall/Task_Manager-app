@@ -1,0 +1,28 @@
+{
+  "name": "Task_Manager-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "startConnection": "\\Users\\Abdelrahman\\mongodb\\bin\\mongod.exe --dbpath=\\Users\\Abdelrahman\\mongodb-data",
+    "start": "node ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdelrahman-kamall/Task_Manager-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abdelrahman-kamall/Task_Manager-app/issues"
+  },
+  "homepage": "https://github.com/Abdelrahman-kamall/Task_Manager-app#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.24",
+    "validator": "^13.1.1"
+  }
+}
