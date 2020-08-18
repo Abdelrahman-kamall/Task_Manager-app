@@ -46,6 +46,8 @@ const userSchema = mongoose.Schema({
             required:true
         }
     }]
+},{
+    timestamps:true
 })
 
 userSchema.statics.login = async (email,password) => {
