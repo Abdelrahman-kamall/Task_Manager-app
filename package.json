@@ -6,7 +6,6 @@
   "scripts": {
     "startConnection": "\\Users\\Abdelrahman\\mongodb\\bin\\mongod.exe --dbpath=\\Users\\Abdelrahman\\mongodb-data",
     "start": "node ./src/app.js",
-    
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +25,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.24",
+    "multer": "^1.4.2",
+    "sharp": "^0.25.4",
     "validator": "^13.1.1"
   }
 }
