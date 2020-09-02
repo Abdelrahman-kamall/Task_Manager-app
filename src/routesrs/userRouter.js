@@ -4,7 +4,7 @@ const multer = require('multer')
 
 const User = require("../models/User.js")
 const auth = require('../middleware/auth')
-
+const {sendWelcomeEmail,sendfinalEmail} = require("../emails/accounts")
 
 const router = new express.Router()
 router.post('/users/login',async (req , res)=>{
@@ -42,16 +42,17 @@ router.post('/users/logoutAll',auth,async (req , res)=>{
     }
 })
 
-router.post("/users", (req,res)=>{
-    const newUser = new User(req.body).save().then(async (result) =>{
-        //console.log(req.body)
-        const token = await result.genAuthToken()
-        res.status(201).send({result,token})
-        
-        //console.log(newUser)
-    }).catch(e =>{
+router.post("/users", async (req,res)=>{
+    try{
+        const newUser = new User(req.body)
+        await newUser.save()
+        sendWelcomeEmail(newUser.email,newUser.name)
+        const token = await newUser.genAuthToken()
+        res.status(201).send({newUser,token})
+    }catch(e){
         res.status(400).send(e)
-    })
+    }
+    
 })
 
 router.get("/users/me",auth,(req,res)=>{
@@ -106,13 +107,16 @@ router.delete('/users/me',auth, async (req,res) =>{
         res.send(del)
     }).catch(e => res.status(400).send(e))*/
     try{
+        sendfinalEmail(req.user.email,req.user.name)
         await req.user.remove()
+        
         res.send(req.user)
     }catch(e){
         res.status(400).send(e)
     }
     
 })
+
 const avatar = multer({
     limits:{
         fileSize:1000000

@@ -65,7 +65,7 @@ userSchema.statics.login = async (email,password) => {
 }
 userSchema.methods.genAuthToken = async function (){
     const user = this
-    const token = jwt.sign({_id:user._id.toString()},'ay7agadlw2ty')
+    const token = jwt.sign({_id:user._id.toString()},process.env.JWT_SECRET)
     user.tokens.push({token})
     await user.save()
     return token
@@ -79,7 +79,7 @@ userSchema.methods.toJSON = function(){
     return userObject
 }
 // agrb post kman
-userSchema.post('remove',async function(next){
+userSchema.pre('remove',async function(next){
     const user = this
     //await Task.deleteMany({owner:this._id})
     

@@ -6,6 +6,7 @@
   "scripts": {
     "startConnection": "\\Users\\Abdelrahman\\mongodb\\bin\\mongod.exe --dbpath=\\Users\\Abdelrahman\\mongodb-data",
     "start": "node ./src/app.js",
+    "env":"env-cmd --file config/dev.env node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/Abdelrahman-kamall/Task_Manager-app#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.2.4",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
@@ -28,5 +30,8 @@
     "multer": "^1.4.2",
     "sharp": "^0.25.4",
     "validator": "^13.1.1"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
   }
 }
